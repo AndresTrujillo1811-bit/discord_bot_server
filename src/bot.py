@@ -67,5 +67,10 @@ async def on_message(message):
             hobbies = ["watch football", "play videogames", "listen to music", "code programs", "watch series"]
             await message.channel.send(f"I like to {random.choice(hobbies)}")
 
+        elif "sport" in user_message.lower():
+            sports = ["football", "basket", "baseball", "golf"]
+            await message.channel.send(f"I like {random.choice(sports)}")
 
-bot.run(token)
+
+if __name__ == "__main__":
+    bot.run(token)
