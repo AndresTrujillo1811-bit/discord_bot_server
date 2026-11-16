@@ -4,7 +4,7 @@ import random
 import config
 from datetime import datetime
 
-intents = discord.Intents.default()
+intents = discord.Intents.default() # grants access to events like messages on servers
 intents.members = True
 intents.message_content = True
 
@@ -26,20 +26,20 @@ async def on_member_join(member):
     await channel.send(
         f"Hello {member.mention}!"
         f"Welcome to {member.guild.name}"
-    )
+    ) # sends welcome message to every user who joins the server
 
 @bot.event
-async def on_message(message):
+async def on_message(message): # triggers for every message the bot can see
     username = message.author.display_name
     channel = str(message.channel.name)
     user_message = str(message.content)
 
     print(f"Message {user_message} by {username} on {channel}")
 
-    if message.author == bot.user:
+    if message.author == bot.user: # prevents the bot from replying to its own messages
         return
 
-    if channel == "general":
+    if channel == "general": # replies in general chat
         if user_message.lower() in ("heeey", "hi", "hello", "what's up, wassup", "hey"):
             await message.channel.send(f"Hello {username}!")
             return
@@ -73,4 +73,4 @@ async def on_message(message):
 
 
 if __name__ == "__main__":
-    bot.run(token)
+    bot.run(token) # run the bot using your own token
